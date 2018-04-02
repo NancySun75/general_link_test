@@ -9,9 +9,9 @@ def home_link(driver, link, title):
 	
 	class_title = driver.title
 	if class_title == title:
-		print "open successfully"
+		print "open successfully============================="
 	else:
-		print "failed to open"
+		print "failed to open================================"
 
 
 

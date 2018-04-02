@@ -16,6 +16,7 @@ def local_new_project(driver, project_type):
 	project_type_icon = driver.find_element_by_css_selector(project_type) # "[aria-label='Create question & answer project']"
 	project_type_show = ActionChains(driver).move_to_element(project_type_icon).perform()
 	#print ("hoveriing show:", project_type_show) mouse hovering print method is incorrect.
+	time.sleep(3) # for showing created project type
 	project_type_icon.click()
 
 '''
