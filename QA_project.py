@@ -12,18 +12,34 @@ def qa_assignment(driver, asmt_list_url):
 	assignment_name.send_keys(name_input)
 	
 	#select due date and due time
+	
 	due_date = driver.find_element_by_id("due-date-datepicker")
 	due_date.click()
+	# make sure date by calander
+
+	day_str = time.strftime("%d", lt)
+	day_num = int(day_str)
+	print ("date select the", day_num, "===============================gggggg")
+	time.sleep(2)
+	day_args = driver.find_elements_by_css_selector("button.md-calendar-date")
+	day_args[day_num].click()
+	ok_btn = driver.find_elements_by_css_selector("button.md-ink--primary")[1]
+	ok_btn.click()
+	# not support input date
 	'''
-	date_select_default = driver.find_element_by_css_selector('button [class="md-btn md-btn--flat md-btn--text md-pointer--hover md-text--theme-primary md-ink--primary md-inline-block md-btn--dialog"]')
-	date_select_default.click() # click ok to use default date.
-	dedault unset due time
+	date_input = time.strftime("%m/%d%Y", lt)
+	due_date.send_keys(date_input)
+	'''
+	
+	
+	
+	'''
 	due_time = driver.find_element_by_id("due-time-timepicker") # or: _css_selector("#due-date-timepicker")
 	due_time.click()
 	date_select_time = driver.find_element_by_css_selector()
 	'''
-	# scroll must be the bottom, or can't local "show_advanced" element
-
+	
+	time.sleep(2)
 	
 	# advanced
 	show_advance = driver.find_element_by_css_selector("[aria-label='Show Advanced']")
