@@ -8,6 +8,7 @@ from ASMT_List_New import local_new_project
 from QA_project import qa_assignment
 import random
 from selenium.common.exceptions import *
+from delete_assignment import delete_asmt
 
 options = Options()
 options.add_argument("user-data-dir=/tmp/tarun")
@@ -29,9 +30,11 @@ for handle in window_handles:
 	if handle != bigben:
 		driver.switch_to_window(handle)
 		print "Bongo page shows==============================="
-time.sleep(20) # for waiting for new window opened completely
+time.sleep(10) # for waiting for new window opened completely
 asmt_list_url = driver.current_url
+delete_asmt(driver)
 # new a project
-local_new_project(driver, "[aria-label='Create question & answer assignment']")
+#local_new_project(driver, "[aria-label='Create question & answer assignment']")
 
-qa_assignment(driver, asmt_list_url)
+
+#qa_assignment(driver, asmt_list_url)
