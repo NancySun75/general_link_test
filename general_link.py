@@ -9,6 +9,7 @@ from QA_project import qa_assignment
 import random
 from selenium.common.exceptions import *
 from delete_assignment import delete_asmt
+from group_project import group_assignment
 
 options = Options()
 options.add_argument("user-data-dir=/tmp/tarun")
@@ -32,9 +33,16 @@ for handle in window_handles:
 		print "Bongo page shows==============================="
 time.sleep(10) # for waiting for new window opened completely
 asmt_list_url = driver.current_url
-delete_asmt(driver)
+
 # new a project
-#local_new_project(driver, "[aria-label='Create question & answer assignment']")
 
-
-#qa_assignment(driver, asmt_list_url)
+'''
+local_new_project(driver, "[aria-label='Create question & answer assignment']")
+# create a QA assignment
+name_input = qa_assignment(driver, asmt_list_url)
+#delete created assignment
+time.sleep(5)
+delete_asmt(driver, name_input)
+'''
+local_new_project(driver, "[aria-label='Create group assignment']")
+qa_assignment(driver, "educator_formed", asmt_list_url)

@@ -16,10 +16,9 @@ def qa_assignment(driver, asmt_list_url):
 	due_date = driver.find_element_by_id("due-date-datepicker")
 	due_date.click()
 	# make sure date by calander
-
 	day_str = time.strftime("%d", lt)
 	day_num = int(day_str)
-	print ("date select the", day_num, "===============================gggggg")
+	print ("date select the", day_num, "===============================")
 	time.sleep(2)
 	day_args = driver.find_elements_by_css_selector("button.md-calendar-date")
 	day_args[day_num].click()
@@ -83,7 +82,7 @@ def qa_assignment(driver, asmt_list_url):
 	# Peer Review
 	# generate a random for "Number of Required Reviews"
 	# remember import random
-	num_of_RR = random.randint(0, 999)
+	num_of_RR = random.randint(0, 3)
 	peer_review_amount = driver.find_element_by_css_selector("#peer_review_amount")
 	peer_review_amount.clear()
 	peer_review_amount.send_keys(num_of_RR)
@@ -97,7 +96,7 @@ def qa_assignment(driver, asmt_list_url):
 	if asmt_list_url == skip_to_url:
 		print ("create QA assignment sucessfully. %s ===============================" %name_input)
 
-
+	return name_input
 
 
 
