@@ -36,13 +36,15 @@ asmt_list_url = driver.current_url
 
 # new a project
 
-'''
+
 local_new_project(driver, "[aria-label='Create question & answer assignment']")
 # create a QA assignment
 name_input = qa_assignment(driver, asmt_list_url)
+'''
 #delete created assignment
 time.sleep(5)
 delete_asmt(driver, name_input)
-'''
+
 local_new_project(driver, "[aria-label='Create group assignment']")
-qa_assignment(driver, "educator_formed", asmt_list_url)
+group_assignment(driver, "Educator Formed", asmt_list_url)
+'''

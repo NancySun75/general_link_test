@@ -47,10 +47,11 @@ def group_assignment(driver, group_formed, asmt_list_url):
 	educator_formed = driver.find_element_by_css_selector("[data-id='0']")
 	student_formed = driver.find_element_by_css_selector("[data-id='1']")
 	system_formed = driver.find_element_by_css_selector("[data-id='2']")
-	if group_formed == educator_formed:
+	if group_formed == educator_formed.find_element_by_css_selector("div").text:
 		educator_formed.click()
-	elif group_formed == student_formed:
-		student_formed.click()
+	else:
+		if group_formed == student_formed.find_element_by_css_selector("div").text:
+			student_formed.click()
 		else:
 			system_formed.click()
 		#Finalize groups at date/time: current_time + after 10mins
