@@ -10,6 +10,7 @@ import random
 from selenium.common.exceptions import *
 from delete_assignment import delete_asmt
 from group_project import group_assignment
+from individual_project import individual_assignment
 
 options = Options()
 options.add_argument("user-data-dir=/tmp/tarun")
@@ -36,15 +37,16 @@ asmt_list_url = driver.current_url
 
 # new a project
 
-
-local_new_project(driver, "[aria-label='Create question & answer assignment']")
 # create a QA assignment
-name_input = qa_assignment(driver, asmt_list_url)
-'''
+local_new_project(driver, "[aria-label='Create question & answer assignment']")
+qa = qa_assignment(driver, asmt_list_url)
+# create a group assignment
+local_new_project(driver, "[aria-label='Create group assignment']")
+gp = group_assignment(driver, "Student Formed", asmt_list_url)
+# create a individual assignment
+local_new_project(driver, "[aria-label='Create individual assignment']")
+ip = individual_assignment(driver, asmt_list_url)
+
 #delete created assignment
 time.sleep(5)
 delete_asmt(driver, name_input)
-
-local_new_project(driver, "[aria-label='Create group assignment']")
-group_assignment(driver, "Educator Formed", asmt_list_url)
-'''
