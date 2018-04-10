@@ -92,8 +92,8 @@ def qa_assignment(driver, asmt_list_url):
 	show_advance.click()
 	time.sleep(5)
 	# make sure save successfully and page skip to assignment list page.
-	skip_to_url = driver.current_url
-	if asmt_list_url == skip_to_url:
+	asmt_list_page = driver.current_url
+	if asmt_list_url == asmt_list_page:
 		print ("create QA assignment sucessfully. %s ===============================" %name_input)
 
 	return name_input
