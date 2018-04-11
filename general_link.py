@@ -1,13 +1,14 @@
 from selenium import webdriver
 import time
-from selenium.webdriver.common.by import By
+from selenium.webdriver.common.by import By 
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC 
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.support import expected_conditions as EC 
-from selenium.webdriver.support.ui import WebDriverWait
-from Bongo_login import login_bongo
-from my_hs import home_link
-from ASMT_List_New import local_new_project
+from bigben_login import login_bigben
+from home_page import link_type
+from asmt_list_add_project import local_new_project
+>>>>>>> ce7610637ded69a65c48166e2c7529f6ab3bda2d
 from QA_project import qa_assignment
 from group_project import group_assignment
 from individual_project import individual_assignment
@@ -20,39 +21,37 @@ options.add_argument("user-data-dir=/tmp/tarun")
 driver = webdriver.Chrome(chrome_options=options)
 driver.maximize_window() # browser full screen
 
-#cur_url = Idriver.current_url
+# invoke login_bigben function to open biggen and login.
+login_bigben(driver)
 
+<<<<<<< HEAD
 # invoke login_bongo function to open biggen and login.
 login_bongo(driver)
 
 # invoke home_link function, click link to get test moudle's link
-
 home_link(driver, "bigbengenerallink", "bigbengenerallink: videoassignments")
-# switch window if there is new opened window
-bigben = driver.current_window_handle
-window_handles = driver.window_handles
-for handle in window_handles:
-	if handle != bigben:
-		driver.switch_to_window(handle)
-		print "Bongo page shows==============================="
- # for waiting for new window opened completely
-time.sleep(20)
-asmt_list_url = driver.current_url
-#WebDriverWait(driver, 20).until(EC.presence_of_element_located(By.CSS_SELECTOR, "[aria-label='Add New Item']"))
+
+# invoke link_type function, click link to get test moudle's link
+asmt_list_url = link_type(driver, "bigbengenerallink", "bigbengenerallink: videoassignments")
+condition = EC.presence_of_element_located((By.CSS_SELECTOR, "[aria-label='Add New Item']"))
+
 
 # new a project
 # create a QA assignment
-local_new_project(driver, "[aria-label='Create question & answer assignment']")
+WebDriverWait(driver, 20, 0.5).until(condition)
+local_new_project(driver, "question_answer")
 qa = qa_assignment(driver, asmt_list_url)
-time.sleep(10)
+
 # create a group assignment
-local_new_project(driver, "[aria-label='Create group assignment']")
+WebDriverWait(driver, 20, 0.5).until(condition)
+local_new_project(driver, "group")
 gp = group_assignment(driver, "Student Formed", asmt_list_url)
-time.sleep(10)
+
 # create a individual assignment
-local_new_project(driver, "[aria-label='Create individual assignment']")
+WebDriverWait(driver, 20, 0.5).until(condition)
+local_new_project(driver, "individual")
 ip = individual_assignment(driver, asmt_list_url)
-time.sleep(10)
+
 '''
 #delete created assignment
 time.sleep(5)
