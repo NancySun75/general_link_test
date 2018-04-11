@@ -1,16 +1,19 @@
 from selenium import webdriver
 import time
+from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.support import expected_conditions as EC 
+from selenium.webdriver.support.ui import WebDriverWait
 from Bongo_login import login_bongo
 from my_hs import home_link
 from ASMT_List_New import local_new_project
 from QA_project import qa_assignment
+from group_project import group_assignment
+from individual_project import individual_assignment
 import random
 from selenium.common.exceptions import *
 from delete_assignment import delete_asmt
-from group_project import group_assignment
-from individual_project import individual_assignment
 
 options = Options()
 options.add_argument("user-data-dir=/tmp/tarun")
@@ -32,21 +35,26 @@ for handle in window_handles:
 	if handle != bigben:
 		driver.switch_to_window(handle)
 		print "Bongo page shows==============================="
-time.sleep(10) # for waiting for new window opened completely
+ # for waiting for new window opened completely
+time.sleep(20)
 asmt_list_url = driver.current_url
+#WebDriverWait(driver, 20).until(EC.presence_of_element_located(By.CSS_SELECTOR, "[aria-label='Add New Item']"))
 
 # new a project
-
 # create a QA assignment
 local_new_project(driver, "[aria-label='Create question & answer assignment']")
 qa = qa_assignment(driver, asmt_list_url)
+time.sleep(10)
 # create a group assignment
 local_new_project(driver, "[aria-label='Create group assignment']")
 gp = group_assignment(driver, "Student Formed", asmt_list_url)
+time.sleep(10)
 # create a individual assignment
 local_new_project(driver, "[aria-label='Create individual assignment']")
 ip = individual_assignment(driver, asmt_list_url)
-
+time.sleep(10)
+'''
 #delete created assignment
 time.sleep(5)
 delete_asmt(driver, name_input)
+'''
