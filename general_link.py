@@ -6,10 +6,9 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.chrome.options import Options
 from bigben_login import login_bigben
-from home_page import link_type
+from home_page import home_link
 from asmt_list_add_project import local_new_project
->>>>>>> ce7610637ded69a65c48166e2c7529f6ab3bda2d
-from QA_project import qa_assignment
+from question_answer_project import qa_assignment
 from group_project import group_assignment
 from individual_project import individual_assignment
 import random
@@ -24,15 +23,8 @@ driver.maximize_window() # browser full screen
 # invoke login_bigben function to open biggen and login.
 login_bigben(driver)
 
-<<<<<<< HEAD
-# invoke login_bongo function to open biggen and login.
-login_bongo(driver)
-
 # invoke home_link function, click link to get test moudle's link
-home_link(driver, "bigbengenerallink", "bigbengenerallink: videoassignments")
-
-# invoke link_type function, click link to get test moudle's link
-asmt_list_url = link_type(driver, "bigbengenerallink", "bigbengenerallink: videoassignments")
+asmt_list_url = home_link(driver, "bigbengenerallink", "bigbengenerallink: videoassignments")
 condition = EC.presence_of_element_located((By.CSS_SELECTOR, "[aria-label='Add New Item']"))
 
 
@@ -40,7 +32,7 @@ condition = EC.presence_of_element_located((By.CSS_SELECTOR, "[aria-label='Add N
 # create a QA assignment
 WebDriverWait(driver, 20, 0.5).until(condition)
 local_new_project(driver, "question_answer")
-qa = qa_assignment(driver, asmt_list_url)
+qa = qa_assignment(driver, asmt_list_url, "Five Star")
 
 # create a group assignment
 WebDriverWait(driver, 20, 0.5).until(condition)

@@ -1,7 +1,7 @@
 from selenium import webdriver
 import time
 
-def link_type(driver, link, title):
+def home_link(driver, link, title):
 	class_link = driver.find_element_by_link_text(link)
 	class_link.click()
 

@@ -3,16 +3,30 @@ import time
 import random
 from selenium.common.exceptions import *
 
-def qa_assignment(driver, asmt_list_url):
+def qa_assignment(driver, asmt_list_url, grade_ype):
 	lt = time.localtime() #time.struct_time(tm_year=2018, tm_mon=3, tm_mday=29, tm_hour=9, tm_min=19, tm_sec=26, tm_wday=3, tm_yday=88, tm_isdst=0)
 	date_str = time.strftime("%m%d%H%M", lt)
 	#input Assignment name
 	name_input = date_str + "_Ren_QA"
 	assignment_name = driver.find_element_by_id("activity-name-textfield")
 	assignment_name.send_keys(name_input)
+
+	#select the grade type
+	grade_type = driver.find_element_by_id("grade-type-toggle")
+	grade_type.click()
+	grade_type_dics{
+		"Percentage":"[data-id = '0']",
+		"Rubric":"[data-id = '1']",
+		"Pass/Fail":"[data-id = '2']",
+		"Auto Pass":"[data-id = '3']",
+		"Five Star":"[data-id = '4']",
+	}
+	grade_type_select = driver.find_element_by_css_selector(grade_type_dics[grade_type])
+	grade_type_select.click()
+	if grade_type == "Rubric":
+		
 	
 	#select due date and due time
-	
 	due_date = driver.find_element_by_id("due-date-datepicker")
 	due_date.click()
 	# make sure date by calander
@@ -24,23 +38,13 @@ def qa_assignment(driver, asmt_list_url):
 	day_args[day_num].click()
 	ok_btn = driver.find_elements_by_css_selector("button.md-ink--primary")[1]
 	ok_btn.click()
-	# not support input date
-	'''
-	date_input = time.strftime("%m/%d%Y", lt)
-	due_date.send_keys(date_input)
-	'''
-	
-	
-	
 	'''
 	due_time = driver.find_element_by_id("due-time-timepicker") # or: _css_selector("#due-date-timepicker")
 	due_time.click()
 	date_select_time = driver.find_element_by_css_selector()
 	'''
-	
-	time.sleep(2)
-	
 	# advanced
+	time.sleep(1)
 	show_advance = driver.find_element_by_css_selector("[aria-label='Show Advanced']")
 	show_advance.click()
 

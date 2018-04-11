@@ -11,7 +11,6 @@ def group_assignment(driver, group_formed, asmt_list_url):
 	assignment_name.send_keys(name_input)
 	
 	#select due date and due time
-	
 	due_date = driver.find_element_by_id("due-date-datepicker")
 	due_date.click()
 	# make sure date by calander
