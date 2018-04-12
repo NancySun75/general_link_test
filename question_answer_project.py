@@ -3,7 +3,7 @@ import time
 import random
 from selenium.common.exceptions import *
 
-def qa_assignment(driver, asmt_list_url, grade_ype):
+def qa_assignment(driver, asmt_list_url, grade_type):
 	lt = time.localtime() #time.struct_time(tm_year=2018, tm_mon=3, tm_mday=29, tm_hour=9, tm_min=19, tm_sec=26, tm_wday=3, tm_yday=88, tm_isdst=0)
 	date_str = time.strftime("%m%d%H%M", lt)
 	#input Assignment name
@@ -12,9 +12,9 @@ def qa_assignment(driver, asmt_list_url, grade_ype):
 	assignment_name.send_keys(name_input)
 
 	#select the grade type
-	grade_type = driver.find_element_by_id("grade-type-toggle")
-	grade_type.click()
-	grade_type_dics{
+	grade_type_toggle = driver.find_element_by_id("grade-type-toggle")
+	grade_type_toggle.click()
+	grade_type_dics = {
 		"Percentage":"[data-id = '0']",
 		"Rubric":"[data-id = '1']",
 		"Pass/Fail":"[data-id = '2']",
@@ -24,7 +24,7 @@ def qa_assignment(driver, asmt_list_url, grade_ype):
 	grade_type_select = driver.find_element_by_css_selector(grade_type_dics[grade_type])
 	grade_type_select.click()
 	if grade_type == "Rubric":
-		
+		rubric("examplerubric.csv")
 	
 	#select due date and due time
 	due_date = driver.find_element_by_id("due-date-datepicker")
@@ -102,7 +102,17 @@ def qa_assignment(driver, asmt_list_url, grade_ype):
 
 	return name_input
 
-
+def rubric(rubric_name):
+	rubric_toggle = driver.find_element_by_css_selector('[aria-label="Rubric"]')
+	rubric_toggle.clear() # setting for edit
+	rubric_toggle.click()
+	time.sleep(1)
+	rubric_list_items = driver.find_elements_by_css_selector(
+		"#rubric-menu-options .md-list-item .md-tile-content")
+	for i in rubric_list_items:
+		if rubric_name == i.text:
+			i.click()
+			break
 
 
 

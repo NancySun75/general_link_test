@@ -28,24 +28,30 @@ asmt_list_url = home_link(driver, "bigbengenerallink", "bigbengenerallink: video
 condition = EC.presence_of_element_located((By.CSS_SELECTOR, "[aria-label='Add New Item']"))
 
 
+
 # new a project
 # create a QA assignment
 WebDriverWait(driver, 20, 0.5).until(condition)
 local_new_project(driver, "question_answer")
 qa = qa_assignment(driver, asmt_list_url, "Five Star")
 
+WebDriverWait(driver, 20, 0.5).until(condition)
+local_new_project(driver, "question_answer")
+qa2 = qa_assignment(driver, asmt_list_url, "Rubric")
+
 # create a group assignment
 WebDriverWait(driver, 20, 0.5).until(condition)
 local_new_project(driver, "group")
 gp = group_assignment(driver, "Student Formed", asmt_list_url)
-
+'''
 # create a individual assignment
 WebDriverWait(driver, 20, 0.5).until(condition)
 local_new_project(driver, "individual")
 ip = individual_assignment(driver, asmt_list_url)
-
 '''
+
 #delete created assignment
 time.sleep(5)
-delete_asmt(driver, name_input)
-'''
+delete_asmt(driver, qa)
+time.sleep(5)
+delete_asmt(driver, qa2)
