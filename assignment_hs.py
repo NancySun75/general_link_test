@@ -11,7 +11,7 @@ def asmt_name_new(driver, custumer_patern):
 	name_input = date_str + custumer_patern
 	assignment_name = driver.find_element_by_id("activity-name-textfield")
 	assignment_name.send_keys(name_input)
-	#return name_input
+	return name_input
 
 #select the grade type
 def grade_types(driver, grade_type):
@@ -31,10 +31,11 @@ def grade_types(driver, grade_type):
 
 # select rubric
 def rubric(driver, rubric_name):
+	time.sleep(1)
 	rubric_toggle = driver.find_element_by_css_selector('[aria-label="Rubric"]')
 	#rubric_toggle.clear() # setting for edit, use it when editing
 	rubric_toggle.click()
-	time.sleep(1)
+
 	rubric_list_items = driver.find_elements_by_css_selector(
 		"#rubric-menu-options .md-list-item .md-tile-content")
 	for i in rubric_list_items:
@@ -89,8 +90,41 @@ def add_1st_question(driver):
 
 	# add the second question
 def add_2nd_question(driver):
+	add_question = driver.find_element_by_css_selector("[aria-label='Add Question']")
 	add_question.click()
 	question_text2 = driver.find_element_by_css_selector('#question-text1')
 	the_2nd_question = "This is the second question test."
 	question_text2.send_keys(the_2nd_question)
 
+def check_all_box(driver):
+	# Recording Options: default
+	checkbox_divs = driver.find_elements_by_tag_name("div")
+	# filter out all elements whose type is checkbox
+	for i in checkbox_divs:
+		try: # this exception setting is for checked "Random Qestion Mode" will add an option: number of randmom qestions per student
+			if i.get_attribute('role') == 'checkbox' and i.get_attribute('aria-checked') == "false":
+				i.click()		
+		except StaleElementReferenceException:
+				print "This exception cause by no Delay options when checking Record Reaction."
+	time.sleep(1)
+
+# need to input amount of random questions if select Random question mode
+def recording_option(driver):
+	random_qestion_num = driver.find_element_by_css_selector("#amount_of_random_questions")
+	random_qestion_num.send_keys(random.randint(1,2))
+
+def peer_review(driver):
+	num_of_RR = random.randint(0, 3)
+	peer_review_amount = driver.find_element_by_css_selector("#peer_review_amount")
+	peer_review_amount.clear()
+	peer_review_amount.send_keys(num_of_RR)
+	time.sleep(3)
+
+def save_asmt(driver, name_input, asmt_list_url):
+	show_advance = driver.find_element_by_css_selector("[aria-label='Save']")
+	show_advance.click()
+	time.sleep(5)
+	# make sure save successfully and page skip to assignment list page.
+	asmt_list_page = driver.current_url
+	if asmt_list_url == asmt_list_page:
+		print ("create QA assignment sucessfully. %s ===============================" %name_input)
