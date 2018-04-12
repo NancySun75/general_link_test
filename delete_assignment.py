@@ -1,16 +1,19 @@
-from selenium import webdriver
 import time
+from selenium import webdriver
+from selenium.webdriver.common.by import By 
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.action_chains import ActionChains
-from selenium.webdriver.common.keys import Keys 
+from selenium.webdriver.common.keys import Keys
+from utils import open_asmt_list
 
-def delete_asmt(driver, asmt_name):
+def delete_asmt(driver, asmt_list_url, asmt_name):
+	open_asmt_list(driver, asmt_list_url)
 	found = found_delete_asmt(driver, asmt_name)
 	while found == False:
 		next_page = driver.find_element_by_css_selector("#data-table-pagination-increment-btn")
 		next_page.click()
 		found = found_delete_asmt(driver, asmt_name)
-
-
 
 def found_delete_asmt(driver, asmt_name):
 	rows = driver.find_elements_by_css_selector(".md-table-row")
@@ -31,7 +34,7 @@ def found_delete_asmt(driver, asmt_name):
 			time.sleep(1)
 			yes_btn = driver.find_element_by_css_selector('[aria-label="Yes"]')
 			yes_btn.click()
-
+			time.sleep(1)
 			return True
 	return False
 # if not found, skip to next page to found.

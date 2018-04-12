@@ -71,7 +71,8 @@ def show_advanced(driver):
 def instruction(driver):
 	# input instructions
 	instruction_text = driver.find_element_by_css_selector("#instructions-textfield")
-	in_text_content = "This message is testing instructions text. It requests not more than 400 charactors and allow to input kinds of specific charactors. So I need test ""~!@#$%^&*()_+{}:|>?`1234567890-=[];'\,./ at the same time. This will contain 2 check points about instruction text.above is 263 charactors, I need more charactors to fill. so below is test message test message test message test message test message 400"
+#	in_text_content = "This message is testing instructions text. It requests not more than 400 charactors and allow to input kinds of specific charactors. So I need test ""~!@#$%^&*()_+{}:|>?`1234567890-=[];'\,./ at the same time. This will contain 2 check points about instruction text.above is 263 charactors, I need more charactors to fill. so below is test message test message test message test message test message 400"
+	in_text_content = "This message is testing instructions text."
 	instruction_text.send_keys(in_text_content)
 
 	# input post submission instruction
