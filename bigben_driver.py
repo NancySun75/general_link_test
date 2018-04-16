@@ -10,6 +10,6 @@ def chrome_init():
 	return driver
 
 def data_clear(driver, asmt_list_url, asmt_names):
-	for asmt in asmt_names:
-		delete_asmt(driver, asmt_list_url, asmt)
+	for asmt_name in asmt_names:
+		delete_asmt(driver, asmt_list_url, asmt_name)
 	driver.close()

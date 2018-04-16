@@ -7,6 +7,14 @@ from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.keys import Keys
 from utils import open_asmt_list
 
+
+def delete_exact(driver, asmt_list_url, asmt_name):
+	found_delete_asmt(driver, asmt_name)
+	delete_asmt(driver, asmt_list_url, asmt_name)
+	
+def delete_grep():
+	found_delete_asmt_grep()
+
 def delete_asmt(driver, asmt_list_url, asmt_name):
 	open_asmt_list(driver, asmt_list_url)
 	found = found_delete_asmt(driver, asmt_name)
@@ -19,7 +27,8 @@ def found_delete_asmt(driver, asmt_name):
 	rows = driver.find_elements_by_css_selector(".md-table-row")
 	for row in rows:
 		name = row.find_element_by_css_selector("span").text
-		if asmt_name == name:
+
+		if asmt_name == name
 			three_point = row.find_element_by_css_selector('[aria-label="Additional Options"]')
 			three_point.click()
 			#local delete icon and click delete to delete the assignment
@@ -28,19 +37,48 @@ def found_delete_asmt(driver, asmt_name):
 			#ActionChains(driver).move_to_element(delete_text[3]).perform()
 
 			delete_icon = driver.find_element_by_css_selector('[aria-label = "Delete, icon"]')
-			time.sleep(1)
+			
 			ActionChains(driver).move_to_element(delete_icon).perform()
+			time.sleep(1)
 			delete_icon.click()
 			time.sleep(1)
-			yes_btn = driver.find_element_by_css_selector('[aria-label="Yes"]')
-			yes_btn.click()
-			time.sleep(1)
+			try:
+				yes_btn = driver.find_element_by_css_selector('[aria-label="Yes"]')
+				yes_btn.click()
+				time.sleep(1)
+			except NoSuchElementException, e:
+				row.click()
+			    time.sleep(1)
+
 			return True
 	return False
 # if not found, skip to next page to found.
 
+def found_delete_asmt_grep(driver, grep_string):
+	rows = driver.find_elements_by_css_selector(".md-table-row")
+	for row in rows:
+		name = row.find_element_by_css_selector("span").text
+		if grep_string < name:
+			three_point = row.find_element_by_css_selector('[aria-label="Additional Options"]')
+			three_point.click()
+			time.sleep(1)
+			delete_icon = driver.find_element_by_css_selector('[aria-label = "Delete, icon"]')
+			ActionChains(driver).move_to_element(delete_icon).perform()
+			time.sleep(1)
+			delete_icon.click()
+			time.sleep(1)
+			try:
+				yes_btn = driver.find_element_by_css_selector('[aria-label="Yes"]')
+				yes_btn.click()
+				time.sleep(1)
+			except NoSuchElementException, e:
+				row.click()
+			    time.sleep(1)
 
-
+	按行搜索，
+	比较，如果符合，执行删除；如果不能删除，按异常处理。
+	不符合，继续在本页面进行查找
+	比较，如果符合，执行删除
 
 
 

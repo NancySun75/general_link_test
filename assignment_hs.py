@@ -114,6 +114,41 @@ def recording_option(driver):
 	random_qestion_num = driver.find_element_by_css_selector("#amount_of_random_questions")
 	random_qestion_num.send_keys(random.randint(1,2))
 
+# for group_assignment 	
+def group_formeds(driver, group_formed):
+	if group_formed != "Educator Formed":
+		group_formation = driver.find_element_by_id("executors_type-toggle")
+		group_formation.click()
+		time.sleep(1)
+		student_formed = driver.find_element_by_css_selector("[data-id='1']")
+		system_formed = driver.find_element_by_css_selector("[data-id='2']")
+		
+		if group_formed == student_formed.find_element_by_css_selector("div").text:
+			student_formed.click()
+		else:
+			system_formed.click()
+		time.sleep(1)
+		#Finalize groups at date/time: current_time + after 10mins
+		finalize_date = driver.find_element_by_id("finalize-group-date-datepicker")
+		finalize_date.click()
+		time.sleep(1)
+		ok_btn1 = driver.find_elements_by_css_selector(".md-ink--primary")[1]
+		ok_btn1.click()
+		time.sleep(1)
+		finalize_time = driver.find_element_by_id("finalize-group-date-timepicker")
+		finalize_time.click()
+		time.sleep(1)
+		ok_btn2 = driver.find_elements_by_css_selector(".md-ink--primary")[1]
+		ok_btn2.click()
+		time.sleep(1)
+		#Minimum students per group: default 1
+		#Maximum students per group:
+		max_stn = driver.find_element_by_id("max_students_amount")
+		max_stn.clear()
+		max_stn.send_keys(3)
+		time.sleep(1)
+
+#Peer Review (allow_peer_review_before_sbmt:aprbs) (anonymous_peer_comments: apc)		
 def peer_review(driver):
 	num_of_RR = random.randint(0, 3)
 	peer_review_amount = driver.find_element_by_css_selector("#peer_review_amount")
@@ -128,4 +163,4 @@ def save_asmt(driver, name_input, asmt_list_url):
 	# make sure save successfully and page skip to assignment list page.
 	asmt_list_page = driver.current_url
 	if asmt_list_url == asmt_list_page:
-		print ("create QA assignment sucessfully. %s ===============================" %name_input)
+		print ("create assignment sucessfully. %s ===============================" %name_input)

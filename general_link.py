@@ -28,12 +28,13 @@ qa = qa_assignment(driver, asmt_list_url)
 # create a group assignment
 open_asmt_list(driver, asmt_list_url)
 local_new_project(driver, "group")
-gp = group_assignment(driver, "Student Formed", asmt_list_url)
+gp = group_assignment(driver, asmt_list_url)
 
 # create a individual assignment
 open_asmt_list(driver, asmt_list_url)
 local_new_project(driver, "individual")
 ip = individual_assignment(driver, asmt_list_url)
+
 
 data_clear(driver, asmt_list_url, [qa, gp, ip])
 

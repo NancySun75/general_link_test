@@ -6,8 +6,8 @@ from assignment_hs import *
 
 def qa_assignment(driver, asmt_list_url):
 	name_input = asmt_name_new(driver, "_Ren_QA")
-	grade_types(driver, "Rubric")
 	select_due_date(driver)
+	grade_types(driver, "Rubric")
 	show_advanced(driver)
 	instruction(driver)
 	add_1st_question(driver)
