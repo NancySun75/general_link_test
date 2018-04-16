@@ -28,7 +28,7 @@ def found_delete_asmt(driver, asmt_name):
 	for row in rows:
 		name = row.find_element_by_css_selector("span").text
 
-		if asmt_name == name
+		if asmt_name == name:
 			three_point = row.find_element_by_css_selector('[aria-label="Additional Options"]')
 			three_point.click()
 			#local delete icon and click delete to delete the assignment
@@ -48,7 +48,7 @@ def found_delete_asmt(driver, asmt_name):
 				time.sleep(1)
 			except NoSuchElementException, e:
 				row.click()
-			    time.sleep(1)
+				time.sleep(1)
 
 			return True
 	return False
@@ -73,12 +73,7 @@ def found_delete_asmt_grep(driver, grep_string):
 				time.sleep(1)
 			except NoSuchElementException, e:
 				row.click()
-			    time.sleep(1)
 
-	按行搜索，
-	比较，如果符合，执行删除；如果不能删除，按异常处理。
-	不符合，继续在本页面进行查找
-	比较，如果符合，执行删除
 
 
 

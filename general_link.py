@@ -4,7 +4,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC 
 from selenium.webdriver.common.action_chains import ActionChains
-from bigben_login import login_bigben
+from bigben_login import *
 from home_page import home_link
 from asmt_list_add_project import local_new_project
 from question_answer_project import qa_assignment
@@ -16,11 +16,11 @@ from utils import open_asmt_list
 
 driver = chrome_init()
 
-login_bigben(driver)
+login_bigben(driver, "educator-1")
 
 # invoke home_link function, click link to get test moudle's link
 asmt_list_url = home_link(driver, "bigbengenerallink", "bigbengenerallink: videoassignments")
-
+'''
 open_asmt_list(driver, asmt_list_url)
 local_new_project(driver, "question_answer")
 qa = qa_assignment(driver, asmt_list_url)
@@ -29,12 +29,14 @@ qa = qa_assignment(driver, asmt_list_url)
 open_asmt_list(driver, asmt_list_url)
 local_new_project(driver, "group")
 gp = group_assignment(driver, asmt_list_url)
-
+'''
 # create a individual assignment
 open_asmt_list(driver, asmt_list_url)
 local_new_project(driver, "individual")
 ip = individual_assignment(driver, asmt_list_url)
 
-
-data_clear(driver, asmt_list_url, [qa, gp, ip])
-
+#data_clear(driver, asmt_list_url, [qa, gp, ip])
+#logout
+logout_bigben(driver)
+user_login(driver, "student-1")
+asmt_list_url_s = home_link(driver, "bigbengenerallink", "bigbengenerallink: videoassignments")
