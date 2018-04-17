@@ -25,8 +25,9 @@ def switch_to_asmt(driver, home_handle):
 	for handle in window_handles:
 		if handle != home_handle:
 			driver.switch_to_window(handle)
-			condition = EC.presence_of_element_located((By.CSS_SELECTOR, "[aria-label='Add New Item']"))
-			WebDriverWait(driver, 60, 0.5).until(condition)
+			#condition = EC.presence_of_element_located((By.CSS_SELECTOR, "[aria-label='Add New Item']"))
+			#WebDriverWait(driver, 60, 0.5).until(condition)
+			
 			asmt_list_url = driver.current_url
 			print ("%s page shows===============================" %driver.title)
 

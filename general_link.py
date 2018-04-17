@@ -13,6 +13,7 @@ from individual_project import individual_assignment
 from selenium.common.exceptions import *
 from bigben_driver import chrome_init, data_clear
 from utils import open_asmt_list
+from found_assignment import found_asmt_by_page
 
 driver = chrome_init()
 
@@ -40,3 +41,4 @@ ip = individual_assignment(driver, asmt_list_url)
 logout_bigben(driver)
 user_login(driver, "student-1")
 asmt_list_url_s = home_link(driver, "bigbengenerallink", "bigbengenerallink: videoassignments")
+found_asmt_by_page(driver, ip)

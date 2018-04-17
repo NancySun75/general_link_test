@@ -7,6 +7,7 @@ def chrome_init():
 	options.add_argument("user-data-dir=/tmp/tarun")
 	driver = webdriver.Chrome(chrome_options=options)
 	driver.maximize_window() # browser full screen
+	driver.implicitly_wait(60)
 	return driver
 
 def data_clear(driver, asmt_list_url, asmt_names):
