@@ -50,7 +50,6 @@ def select_due_date(driver):
 	# make sure date by calander
 	day_str = time.strftime("%d", lt)
 	day_num = int(day_str)
-	print ("date select the", day_num, "===============================")
 	time.sleep(2)
 	day_args = driver.find_elements_by_css_selector("button.md-calendar-date")
 	day_args[day_num].click()
@@ -106,7 +105,7 @@ def check_all_box(driver):
 			if i.get_attribute('role') == 'checkbox' and i.get_attribute('aria-checked') == "false":
 				i.click()		
 		except StaleElementReferenceException:
-				print "This exception cause by no Delay options when checking Record Reaction."
+				pass
 	time.sleep(1)
 
 # need to input amount of random questions if select Random question mode
