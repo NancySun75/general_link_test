@@ -1,6 +1,6 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-from delete_assignment import delete_asmt
+from delete_operation.delete_assignment import delete_asmt
 
 def chrome_init():
 	options = Options()

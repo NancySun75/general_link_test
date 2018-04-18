@@ -6,6 +6,6 @@ def open_asmt_list(driver, url):
 	if driver.current_url != url:
 		driver.get(url)
 
-	condition = EC.visibility_of_element_located((By.CSS_SELECTOR, "[aria-label='Add New Item']"))
+	condition = EC.visibility_of_element_located((By.CSS_SELECTOR, ".content-title-header"))
 	WebDriverWait(driver, 40, 0.5).until(condition)
 	return

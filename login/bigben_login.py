@@ -19,6 +19,7 @@ def user_login(driver, user_name):
 	password.send_keys("!QAZ2wsx")
 
 	driver.find_element_by_css_selector('[type="submit"]').click()
+	print(user_name, "login successfully=========================")
 	
 # driver.find_element_by_type("submit").click()
 # driver.find_element_by_class_name("btn btn-primary").click()
