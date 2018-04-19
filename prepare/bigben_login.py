@@ -1,11 +1,8 @@
-
-
 # login bongo1.2 as educator-1
 from selenium import webdriver
 import time
 
 def login_bigben(driver, user_name):
-
 	home_cur_url = "https://bigben-moodle.youseeu.com"
 	driver.get(home_cur_url)
 	user_login(driver, user_name)
@@ -17,23 +14,15 @@ def user_login(driver, user_name):
 	password = driver.find_element_by_id("password")
 	password.clear()
 	password.send_keys("!QAZ2wsx")
-
 	driver.find_element_by_css_selector('[type="submit"]').click()
-	print(user_name, "login successfully=========================")
-	
-# driver.find_element_by_type("submit").click()
-# driver.find_element_by_class_name("btn btn-primary").click()
 	
 def logout_bigben(driver):
 	switch_to_logout_window(driver)
-
 	drop_down_list = driver.find_element_by_id("dropdown-1")
 	drop_down_list.click()
 	logout = driver.find_element_by_id("actionmenuaction-6")
 	logout.click()
 	time.sleep(3)
-	print("%s shows,logout successfully============================" %driver.title) 
-
 
 def switch_to_logout_window(driver):
 	home_handle = driver.home_handle
