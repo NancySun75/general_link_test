@@ -56,6 +56,8 @@ def select_due_date(driver):
 	ok_btn = driver.find_elements_by_css_selector("button.md-ink--primary")[1]
 	ok_btn.click()
 	time.sleep(1)
+	date_show = due_date.get_attribute("value")
+	return date_show
 	'''
 	due_time = driver.find_element_by_id("due-time-timepicker") # or: _css_selector("#due-date-timepicker")
 	due_time.click()
