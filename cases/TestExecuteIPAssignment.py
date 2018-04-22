@@ -4,8 +4,9 @@ from prepare.home_page import home_link
 from create_assignment.asmt_list_add_project import local_new_project
 from create_assignment.group_project import group_assignment
 from create_assignment.individual_project import individual_assignment
-from execute_assignment.ExecuteGPAssignment import ExecuteGPAssignment
+from execute_assignment.ExecuteIPAssignment import ExecuteIPAssignment
 from execute_assignment.found_assignment import found_asmt_by_page
+from delete_operation.delete_assignment import delete_asmt
 import unittest
 
 class TestCreateAssignment(unittest.TestCase):
@@ -23,12 +24,12 @@ class TestCreateAssignment(unittest.TestCase):
 		found_asmt_by_page(self.driver, self.ip["ip_name"])
 
 	def test_execute_ip(self):
-		asmt = ExecuteGPAssignment()
+		asmt = ExecuteIPAssignment()
 		asmt.driver = self.driver
 		asmt.due_date_check(self.ip, self)
-
+		asmt.instructions_check(self.ip, self)
 		'''
-		instructions_check()
+		
 		milestone_add()
 		meeting_sechedule()
 		file_add()
@@ -40,5 +41,10 @@ class TestCreateAssignment(unittest.TestCase):
 		'''
 
 	def tearDown(self):
+		logout_bigben(self.driver)
+		login_bigben(self.driver, "educator-1")
+		self.asmt_list_url = home_link(self.driver, "bigbengenerallink", "bigbengenerallink: videoassignments")
+		delete_asmt(driver, self.asmt_list_url, self.ip["ip_name"])
+
 		self.driver.quit()
 

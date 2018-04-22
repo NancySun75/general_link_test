@@ -1,8 +1,8 @@
-from cases.TestExecuteGPAssignment import TestCreateAssignment
+from cases.TestDeleteAssignment import DeleteAssignment
 import unittest
 
 suite = unittest.TestSuite()
-suite.addTest(TestCreateAssignment("test_execute_ip"))
+suite.addTest(DeleteAssignment("test_execute_delete"))
 
 
 runner = unittest.TextTestRunner()

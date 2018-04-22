@@ -1,7 +1,7 @@
 from create_assignment.assignment_hs import *
 from datetime import datetime 
 
-class ExecuteGPAssignment():
+class ExecuteIPAssignment():
 
 	def due_date_check(self, ip, test_case):
 		set_date = self.get_set_date()
@@ -26,9 +26,18 @@ class ExecuteGPAssignment():
 
 	def get_asmt_date(self, ip):
 		return ip["due_date"]
+
+	def instructions_check(self, ip, test_case):
+		ins_title = self.driver.find_element_by_css_selector(".instructions-title .md-card-title--title")
+		instructions_title = ins_title.text
+		test_case.assertEqual(instructions_title, "Instructions", msg = "instructions-title is wrong")
+
+		ins_text = self.driver.find_element_by_css_selector(".instructions-detail-container")
+		instructions_text = ins_text.text
+		input_ins_text = ip["ins"]["ins_text"]
+		test_case.assertEqual(instructions_text, input_ins_text, msg = "instructions content is unconsistent")
 '''
 
-	def instructions_check():
 	def milestone_add():
 	def meeting_sechedule:
 	def file_add():

@@ -80,7 +80,8 @@ def instruction(driver):
 	instruction_text_p = driver.find_element_by_css_selector("#post-submission-instructions-textfield")
 	in_text_content_p = "This message is post submission instructions text." 
 	instruction_text_p.send_keys(in_text_content_p)
-
+	return {'ins_text': in_text_content, 'post_ins_text': in_text_content_p}
+	
 	# Questions
 	# add the first question
 def add_1st_question(driver):

@@ -8,10 +8,10 @@ def individual_assignment(driver, asmt_list_url):
 	due_date = select_due_date(driver)
 	grade_types(driver, "Percentage")
 	show_advanced(driver)
-	instruction(driver)
+	ins = instruction(driver)
 	peer_review(driver)
 	save_asmt(driver, name_input, asmt_list_url)
-	return {'ip_name': name_input, 'due_date': due_date }		
+	return {'ip_name': name_input, 'due_date': due_date, 'ins': ins }		
 
 
 	
