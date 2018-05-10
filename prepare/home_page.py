@@ -25,8 +25,7 @@ def switch_to_asmt(driver, home_handle):
 			driver.switch_to_window(handle)
 			condition = EC.presence_of_element_located((By.CSS_SELECTOR, ".content-title-header"))
 			WebDriverWait(driver, 60, 0.5).until(condition)
-			asmt_list_url = driver.current_url
+		asmt_list_url = driver.current_url
 			
 	return asmt_list_url
-
 

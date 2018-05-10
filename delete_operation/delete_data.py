@@ -6,4 +6,4 @@ from delete_assignment import delete_asmt
 driver = chrome_init()
 login_bigben(driver)
 asmt_list_url = home_link(driver, "bigbengenerallink", "bigbengenerallink: videoassignments")
-delete_asmt(driver, asmt_list_url, "_Ren_", False)
+delete_asmt(driver, asmt_list_url, "0001_Ren_GP", False)

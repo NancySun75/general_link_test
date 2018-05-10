@@ -12,12 +12,13 @@ class TestCreateAssignment(unittest.TestCase):
 	def setUp(self):
 		self.driver = chrome_init()
 		login_bigben(self.driver, "educator-1")
-		self.asmt_list_url = home_link(self.driver, "bigbengenerallink", "bigbengenerallink: videoassignments")
+		#self.asmt_list_url = home_link(self.driver, "bigbengenerallink", "bigbengenerallink: videoassignments")
+		self.asmt_list_url = home_link(self.driver, "13StableGeneralCourse", "13stablegen: 13StableGeneralVideoAssignments")
 
 	def test_new_qa(self):
 		local_new_project(self.driver, "question_answer")
 		qa = qa_assignment(self.driver, self.asmt_list_url)
-
+	"""	
 	def test_new_gp(self):
 		local_new_project(self.driver, "group")
 		gp = group_assignment(self.driver, self.asmt_list_url)
@@ -25,7 +26,7 @@ class TestCreateAssignment(unittest.TestCase):
 	def test_new_ip(self):
 		local_new_project(self.driver, "individual")
 		ip = individual_assignment(self.driver, self.asmt_list_url)
-
+	"""
 	def tearDown(self):
 		self.driver.quit()
 
